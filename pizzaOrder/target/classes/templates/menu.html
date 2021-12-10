@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+</head>
+<body>
+<h1>menu</h1>
+<a href="/home">home page</a><br>
+<a href="/basket">basket</a>
+
+
+<div>
+    <div th:each="element: ${menuList}">
+        <div class="custom-card-header" th:text="${element.name}"></div>
+        <div class="custom-card-body" th:text="${element.ingredients}"></div>
+        <div class="custom-card-body" th:text="${element.price}"></div>
+        <div class="custom-card-body"><img th:src="@{${'images/' + element.image + '.png'}}" alt="pizza"></div>
+
+        <form th:action="@{'/add-pizza/'+${element.id}}" method="post">
+        <button type="submit"> Add to basket </button>
+            </form>
+    </div>
+</div>
+
+
+</body>
+</html>

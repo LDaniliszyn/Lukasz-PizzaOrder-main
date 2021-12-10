@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+</head>
+<body>
+<h1>Basket</h1>
+<a href="/home">home page</a><br>
+<a href="/menu">menu</a><br>
+
+
+<div>
+    <div th:each="element: ${basketList}">
+        <div class="custom-card-header" th:text="${element.name}"></div>
+        <div class="custom-card-body" th:text="${element.ingredients}"> </div>
+        <div class="custom-card-body" th:text="${element.price}"></div>
+        <div class="custom-card-body"><img th:src="@{${'images/' + element.image + '.png'}}" alt="pizza"></div>
+
+        <form th:action="@{'/remove-pizza/'+${element.id}}" method="post">
+            <button type="submit"> remove </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
